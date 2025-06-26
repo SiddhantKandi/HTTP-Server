@@ -71,6 +71,8 @@ func main(){
 
 	v1Router.Post("/users",apiCfg.handlerUser)
 
+	v1Router.Get("/getUser", apiCfg.middlewareAuth(apiCfg.handleGetUser))
+
 	router.Mount("/v1", v1Router)
 
 	server := &http.Server{

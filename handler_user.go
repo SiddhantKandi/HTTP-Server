@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"net/http"
 	"time"
-
 	"github.com/SiddhantKandi/HTTPServer/internal/database"
 	"github.com/google/uuid"
 )
@@ -40,5 +39,11 @@ func (apiCfg *apiConfig)handlerUser(w http.ResponseWriter,r *http.Request){
 	}
 	
 
-	responsewithJSON(w,200,databaseUsertoUser(user))
+	responsewithJSON(w,201,databaseUsertoUser(user))
+}
+
+
+func (apiCfg *apiConfig)handleGetUser(w http.ResponseWriter,r *http.Request,user database.User){	
+
+	responsewithJSON(w, 200,databaseUsertoUser(user))
 }
