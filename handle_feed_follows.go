@@ -43,3 +43,16 @@ func (apiCfg *apiConfig)handlerCreateFeedFollow(w http.ResponseWriter,r *http.Re
 
 	responsewithJSON(w,201,databaseFeedFollowtoFeedFollow(feedFollow))
 }
+
+func (apiCfg *apiConfig)handlerGetAllFeedFollow(w http.ResponseWriter,r *http.Request,user database.User){
+
+	feedFollows,err := apiCfg.DB.GetAllFeedFollows(r.Context(),user.ID)
+
+	if err!=nil{
+		ResponsewithError(w, 400, fmt.Sprintf("Couldn't get all feed follow: %v",err))
+		return
+	}
+	
+
+	responsewithJSON(w,201,databaseGetAllFeedFollowstoFeedFollows(feedFollows))
+}
